@@ -3,6 +3,7 @@ const express = require("express");
 const db = require("./data/db.js");
 const server = express();
 server.use(express.json());
+server.use(cors());
 
 server.post("/api/users", (req, res) => {
   if (!req.body.name || !req.body.bio) {
