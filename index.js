@@ -12,7 +12,7 @@ server.post("/api/users", (req, res) => {
   } else {
     db.insert(req.body)
       .then(user => {
-        res.status(201).json(user);
+        res.status(201).json(req.body);
       })
       .catch(err =>
         res
@@ -70,7 +70,30 @@ server.delete("/api/users/:id", (req, res) => {
     );
 });
 
-server.put("/api/users/:id", (req, res) => {});
+server.put("/api/users/:id", (req, res) => {
+  if (!req.body.name || !req.body.bio) {
+    res
+      .status(400)
+      .json({ errorMessage: "Please provide name and bio for the user." });
+  } else {
+    const { id } = req.params;
+    db.update(id, req.body)
+      .then(user => {
+        if (user) {
+          res.status(200).json(req.body);
+        } else {
+          res.status(404).json({
+            message: "The user with the specified ID does not exist."
+          });
+        }
+      })
+      .catch(err =>
+        res
+          .status(500)
+          .json({ error: "The user information could not be modified." })
+      );
+  }
+});
 
 server.listen((port = 5000), () => {
   console.log(`\nListening on ${port}`);
