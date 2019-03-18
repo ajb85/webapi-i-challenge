@@ -1,0 +1,33 @@
+.shadowMask {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 15, 15, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.form {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20%;
+  margin: auto;
+  background-color: #fff;
+  width: 50%;
+  min-width: 500px;
+  height: 20%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    margin: 10px 0;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+}
